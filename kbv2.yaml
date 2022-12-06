@@ -1,0 +1,100 @@
+points:
+  zones:
+    matrix:
+      columns:
+        pinkyreach:
+          key:
+            column_net: P21
+        pinky:
+          stagger: 0.25cy
+          key:
+            column_net: P20
+        ring:
+          stagger: 0.25cy
+          key:
+            column_net: P19
+        middle:
+          stagger: 0.25cy
+          key:
+            column_net: P18
+        index:
+          stagger: -0.25cy
+          key:
+            column_net: P15
+        inner:
+          stagger: -0.15cy
+          key:
+            column_net: P14
+      rows:
+        bottom:
+          padding: cx
+          row_net: P5
+        home:
+          padding: cx
+          row_net: P4
+        top:
+          padding: cx
+          row_net: P3
+    thumb:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0, -1.25cy]
+        rotate: -10
+      columns:
+        inner:
+          key.name: thumb_inner
+          key.height: 1
+          key.width: 1
+          key.column_net: P18
+          key.row_net: P6
+        tucky:
+          key.name: thumb_tucky
+          key.height: 2
+          key.column_net: P15
+          key.row_net: P6
+          spread: 1cx
+          rotate: -10
+          origin: [-2.6cx, -1cy]
+        reachy:
+          key.name: thumb_reachy
+          key.height: 2
+          key.column_net: P14
+          key.row_net: P6
+          spread: cx
+          rotate: -10
+          origin: [-1.5cx, -1.5cy]
+  key:
+    footprints:
+      choc:
+        type: choc
+        anchor:
+        nets:
+          from: =colrow
+          to: =column_net
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+      diode:
+        type: diode
+        anchor:
+          rotate: 0
+          shift: [ 0, -4.5 ]
+        nets:
+          from: =colrow
+          to: =row_net
+        params:
+          via_in_pad: true
+          through_hole: false
+
+
+pcbs:
+  simple_split:
+    footprints:
+      - type: promicro_pretty
+        anchor:
+          - ref: matrix_inner_home
+            shift: [1.05cx, 0.5cy]
+            rotate: -90
+        params:
+          reverse: true

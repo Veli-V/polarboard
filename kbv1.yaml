@@ -1,0 +1,71 @@
+points:
+  zones:
+    matrix:
+      columns:
+        pinkyreach:
+        pinky.stagger: 0.25cy
+        ring.stagger: 0.25cy
+        middle.stagger: 0.25cy
+        index.stagger: -0.25cy
+        inner.stagger: -0.15cy
+      rows:
+        bottom.padding: cx
+        home.padding: cx
+        top.padding: cx
+    thumb:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0, -1.25cy]
+        rotate: -10
+      columns:
+        inner:
+          key.name: thunb_inner
+          key.height: 1
+          key.width: 1
+        tucky:
+          key.name: thumb_tucky
+          key.height: 2
+          spread: 1cx
+          rotate: -10
+          origin: [-2.5cx, -0.5cy]
+        reachy:
+          key.height: 2
+          spread: cx
+          rotate: -10
+          origin: [-1.5cx, -cy]
+          key.name: thumb_reachy
+  key:
+    footprints:
+      - type: cx
+        nets:
+          from: GND
+          to: =name
+        params:
+          reverse: true
+          keycaps: true
+pcbs:
+  simple_split:
+    footprints:
+      - type: promicro
+        anchor:
+          - ref: matrix_inner_home
+            shift: [1cx, 0.5cy]
+            rotate: -90
+        nets:
+          P7: matrix_pinky_top
+          P18: matrix_ring_top
+          P19: matrix_middle_top
+          P20: matrix_index_top
+          P21: matrix_inner_top
+          P15: matrix_pinky_home
+          P14: matrix_ring_home
+          P16: matrix_middle_home
+          P10: matrix_index_home
+          P1: matrix_inner_home
+          P2: matrix_pinky_bottom
+          P3: matrix_ring_bottom
+          P4: matrix_middle_bottom
+          P5: matrix_index_bottom
+          P6: matrix_inner_bottom
+          P8: thumb_tucky
+          P9: thumb_reachy
