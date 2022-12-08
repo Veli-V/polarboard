@@ -10,15 +10,15 @@ points:
           key:
             column_net: P20
         ring:
-          stagger: 0.25cy
+          stagger: 0.3cy
           key:
             column_net: P19
         middle:
-          stagger: 0.25cy
+          stagger: 0.3cy
           key:
             column_net: P18
         index:
-          stagger: -0.25cy
+          stagger: -0.3cy
           key:
             column_net: P15
         inner:
@@ -62,39 +62,89 @@ points:
           key.row_net: P6
           spread: cx
           rotate: -10
-          origin: [-1.5cx, -1.5cy]
   key:
+    padding: cy
+    tags:
+      1u: true
     footprints:
-      choc:
+      choc_hotswap:
         type: choc
-        anchor:
-        nets:
-          from: =colrow
-          to: =column_net
         params:
           keycaps: true
           reverse: true
           hotswap: true
+        nets:
+          from: =colrow
+          to: =column_net
+      #choc:
+      #  type: choc
+      #  anchor:
+      #    rotate: 180
+      #  params:
+      #    keycaps: true
+      #    reverse: true
+      #  nets:
+      #    from: =colrow
+      #    to: =column_net
       diode:
         type: diode
         anchor:
           rotate: 0
-          shift: [ 0, -4.5 ]
+          shift: [ 0, -6.5 ]
         nets:
           from: =colrow
           to: =row_net
         params:
           via_in_pad: true
           through_hole: false
+      # Tämä ei toimi jostain syystä.
+      via:
+        type: via
+        anchor:
+          rotate: 0
+          shift: [0, -4]
+        nets:
+          net: =column_net
 
 
 pcbs:
-  simple_split:
+  polarBoard:
     footprints:
-      - type: promicro_pretty
+      promicro:
+        type: promicro_pretty
         anchor:
-          - ref: matrix_inner_home
-            shift: [1.05cx, 0.5cy]
-            rotate: -90
+          ref: matrix_inner_home
+          shift: [1.2cx, 0.5cy]
+          rotate: -90
+        params:
+          reverse: true
+      b3u1000p:
+        type: b3u1000p
+        nets:
+          r1: RST
+          r2: GND
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [15, -15]
+          rotate: 0
+        params:
+          reverse: true
+      bat:
+        type: bat
+        nets:
+          neg: GND
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [20, -15]
+          rotate: 0
+      pcm12:
+        type: pcm12
+        anchor:
+          ref: matrix_inner_home
+          shift: [25, -15]
+          rotate: 90
+        nets:
+          from: pos
+          to: RAW
         params:
           reverse: true
